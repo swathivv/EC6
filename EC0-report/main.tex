@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+\usepackage{times} 			% use Times New Roman font
+
+\usepackage[margin=1in]{geometry}   % sets 1 inch margins on all sides
+\usepackage{hyperref}               % for URL formatting
+\usepackage[pdftex]{graphicx}       % So includegraphics will work
+\setlength{\parskip}{1em}           % skip 1em between paragraphs
+\usepackage{indentfirst}            % indent the first line of each paragraph
+\usepackage{datetime}
+\usepackage[small, bf]{caption}
+\usepackage{listings}               % for code listings
+\usepackage{xcolor}                 % for styling code
+\usepackage{multirow}
+
+%New colors defined below
+\definecolor{backcolour}{RGB}{246, 246, 246}   % 0xF6, 0xF6, 0xF6
+\definecolor{codegreen}{RGB}{16, 124, 2}       % 0x10, 0x7C, 0x02
+\definecolor{codepurple}{RGB}{170, 0, 217}     % 0xAA, 0x00, 0xD9
+\definecolor{codered}{RGB}{154, 0, 18}         % 0x9A, 0x00, 0x12
+
+%Code listing style named "gcolabstyle" - matches Google Colab
+\lstdefinestyle{gcolabstyle}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{backcolour},   
+  commentstyle=\itshape\color{codegreen},
+  keywordstyle=\color{codepurple},
+  stringstyle=\color{codered},
+  numberstyle=\ttfamily\footnotesize\color{darkgray}, 
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=gcolabstyle}      %set gcolabstyle code listing
+
+% to make long URIs break nicely
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+% for fancy page headings
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.6pt} % to remove fancyhdr warning
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small \thepage}
+\lhead{\small HW 1\, Venkatesh}  % EDIT THIS, REPLACE # with HW number
+\chead{\small CS 532, Fall 2021} 
+
+%-------------------------------------------------------------------------
+\begin{document}
+
+% EDIT THE ITEMS HERE
+\begin{centering}
+{\large\textbf{HW 1\ - Title}}\\ 
+Swathi Venkatesh\\
+09/15/2021\\
+\end{centering}
+
+%-------------------------------------------------------------------------
+
+% The * after \section just says to not number the sections
+\section*{Q1}
+
+\emph{You may copy the question into your report, but make sure that you make it clear where the question ends and your answer begins.}
+
+\subsection*{Answer}
+
+\emph{All figures must have a caption and must be referenced in the text. Example below.}
+
+Figure \ref{fig:web-growth} shows the growth of population in Virginia over the period of time.
+
+\begin{figure}[h]
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 20 10 50, clip, width=\textwidth] {download.png}
+    \caption{Population growth in Virginia}
+    \label{fig:web-growth}
+\end{figure}
+
+\emph{If you want to include code in your report, you can insert a screenshot (if it's legible), or you can copy/paste the code into a listings environment. There are examples below and more information is available at \url{https://www.overleaf.com/learn/latex/code_listing}.}
+
+Listing \ref{lst:copy} is an example of directly copying code into the LaTeX document and having the listings package perform syntax highlighting. Listing \ref{lst:import} is an example of importing the code from a file rather than copying it in.
+
+%Python code highlighting
+\begin{lstlisting}[language=Python, caption=Python example copied into the LaTeX, label=lst:copy]
+#!/usr/local/bin/python3
+# Python3 program to swap elements
+# at given positions
+
+# Swap function
+def swapPositions(list, pos1, pos2):
+     
+    list[pos1], list[pos2] = list[pos2], list[pos1]
+    return list
+ 
+# Driver function
+List = [23, 65, 19, 90]
+pos1, pos2  = 1, 3
+ 
+print(swapPositions(List, pos1-1, pos2-1))
+
+
+\end{lstlisting}
+
+%Importing code from file
+\lstinputlisting[language=Python, caption=Python sample code loaded from file, label=lst:import]{testargs.py}
+
+Table \ref{tbl:simple} shows a simple example table.  Table \ref{tbl:confusion} shows an example confusion matrix (you'll see this term later) from \url{https://en.wikipedia.org/wiki/Confusion_matrix}. This employs rows that span multiple columns (multicol) and columns that span multiple rows (multirow). 
+
+\begin{table}[h]
+\centering
+\caption{Simple Table}
+\label{tbl:simple}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Week} & \textbf{Date} & \textbf{Topic} \\ \hline \hline
+1 & Aug 28 & Introduction to Web Science and Web Architecture \\ \hline
+2 & Sep 4 & Introduction to Python \\ \hline
+3 & Sep 11 & Introduction to Info Vis with R, Python \\ \hline
+4 & Sep 18 & Measuring the Web\\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Example Confusion Matrix from Wikipedia}
+\label{tbl:confusion}
+\begin{tabular}{l|l|c|c|}
+\multicolumn{2}{c}{}&\multicolumn{2}{c}{Actual}\\
+\cline{3-4}
+\multicolumn{2}{c|}{}&Cat&Dog\\
+\cline{2-4}
+\multirow{2}{*}{Predicted}& Cat & 5 (TP) & 3 (FP)\\
+\cline{2-4}
+& Dog & 2 (FN) & 3 (TN) \\
+\cline{2-4}
+\end{tabular}
+\end{table}
+
+\subsection*{Discussion}
+
+\emph{You must provide some discussion of every answer. Discuss how you arrived at the answer and the tools you used. Discuss the implications of your answer.}
+
+\section*{Q2}
+
+\subsection*{Answer}
+
+\subsection*{Discussion}
+
+
+\section*{Q3}
+
+\subsection*{Answer}
+
+\subsection*{Discussion}
+
+\section*{References}
+
+\emph{Every report must list the references that you consulted while completing the assignment. If you consulted a webpage, you must include the URL.}
+
+\begin{itemize}
+    \item {WebSci: Web Science, \url{https://dl.acm.org/conference/websci}}
+    \item {Journal of Web Science, \url{https://libguides.uams.edu/find_articles/wos/}}
+    \item {Github , \url{https://github.com}}
+\end{itemize}
+
+\end{document}
+
